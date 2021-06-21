@@ -11,8 +11,12 @@ void emulate_instructon(state_t *state) {
     uint8_t *opcode = &state->memory[state->pc];
 
     switch(*opcode) {
-        case 0x00: not_implemented(state); break;
-        case 0x01: not_implemented(state); break;
+        case 0x00: break;
+        case 0x01: { // LXI B, word
+            state->c = opcode[1];
+            state->b = opcode[2];
+            state->pc += 2;
+        } break;
         case 0x02: not_implemented(state); break;
         case 0x03: not_implemented(state); break;
         case 0x04: not_implemented(state); break;
